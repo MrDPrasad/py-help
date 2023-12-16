@@ -11,7 +11,7 @@ def calculate_string_value(input_string):
     input_string = input_string.lower()
 
     # Calculate the total value by summing up the values for each character
-    total_value = sum(letter_values[char] for char in input_string if char in letter_values)
+    total_value = sum(letter_values.get(char, 0) for char in input_string)
 
     return total_value
 
