@@ -13,11 +13,25 @@ def calculate_string_value(input_string):
     # Calculate the total value by summing up the values for each character
     total_value = sum(letter_values.get(char, 0) for char in input_string)
 
-    return total_value
+    # Continue adding individual digits until a single-digit result is obtained
+    while total_value >= 10:
+        total_value = sum(map(int, str(total_value)))
+
+    # Display individual values for each character
+    char_values = {char: letter_values.get(char, 0) for char in input_string}
+
+    return total_value, char_values
 
 # Get user input
 user_input = input("Enter a string: ")
 
-# Calculate and print the total value of the input string
-result = calculate_string_value(user_input)
+# Calculate the total value and individual values for each character
+result, char_values = calculate_string_value(user_input)
+
+# Print the total value
 print(f"The total value of the string '{user_input}' is: {result}")
+
+# Print individual values for each character
+print("Individual values for each character:")
+for char, value in char_values.items():
+    print(f"{char} = {value}")
